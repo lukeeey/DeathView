@@ -1,0 +1,7 @@
+name: DeathView
+author: Luke (@lukeeey)
+description: Go into spectator mode when you die. Like Mineplex.
+version: 1.0.0
+api: [1.0.5]
+main: lukeeey.nukkit.deathview.DeathView
+website: https://github.com/lukeeey/DeathView
