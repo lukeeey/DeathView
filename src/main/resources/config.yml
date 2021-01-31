@@ -1,3 +1,8 @@
+# ===========================================
+# DeathView by lukeeey
+# https://github.com/lukeeey/DeathView
+# ===========================================
+
 # The messages to be displayed when you 'die'
 # Leave empty to prevent displaying them
 # {victim} {world}
@@ -18,3 +23,7 @@ teleport-to:
   x: 8
   y: 100
   z: 8
+
+# Specify the name of the world you would like to teleport to.
+# You can use 'default' for the default world specified in the server.properties.
+teleport-to-world: default
