@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.lukeeey.deathview</groupId>
-    <artifactId>deathview</artifactId>
+    <artifactId>DeathView</artifactId>
     <version>1.0.1</version>
 
     <repositories>
@@ -32,7 +32,7 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
-        <finalName>${project.name}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
