@@ -11,6 +11,10 @@ import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.plugin.PluginBase;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class DeathView extends PluginBase implements Listener {
 
     @Override
@@ -41,16 +45,8 @@ public class DeathView extends PluginBase implements Listener {
             event.setCancelled();
             player.setGamemode(3);
 
-            String playerMessage = getConfig().getString("death-message.died.player");
-            String allMessage = getConfig().getString("death-message.died.all");
-
-            if (!playerMessage.isEmpty()) {
-                player.sendMessage(placeholder(event, playerMessage));
-            }
-
-            if (!allMessage.isEmpty()) {
-                getServer().broadcastMessage(placeholder(event, allMessage));
-            }
+            sendMessageFromConfig(getConfig().getString("death-message.died.player"), event, player);
+            sendMessageFromConfig(getConfig().getString("death-message.died.all"), event);
 
             getServer().getScheduler().scheduleDelayedTask(this, () -> {
                 player.setGamemode(0);
@@ -88,5 +84,27 @@ public class DeathView extends PluginBase implements Listener {
             throw new RuntimeException("Invalid world name specified in config: " + configWorld);
         }
         return level;
+    }
+
+    private void sendMessageFromConfig(String type, EntityDamageEvent event) {
+        sendMessageFromConfig(type, event, null);
+    }
+
+    private void sendMessageFromConfig(String type, EntityDamageEvent event, Player player) {
+        String chatMessage = getConfig().getString(type + ".chat");
+        String titleMessage = getConfig().getString(type + ".title");
+        String subtitleMessage = getConfig().getString(type + ".subtitle");
+
+        List<Player> players = (player != null ? Collections.singletonList(player) : new ArrayList<>(getServer().getOnlinePlayers().values()));
+
+        if (!chatMessage.isEmpty()) {
+            players.forEach(p -> p.sendMessage(placeholder(event, chatMessage)));
+        }
+        if (!titleMessage.isEmpty()) {
+            players.forEach(p -> p.sendMessage(placeholder(event, titleMessage)));
+        }
+        if (!subtitleMessage.isEmpty()) {
+            players.forEach(p -> p.sendMessage(placeholder(event, subtitleMessage)));
+        }
     }
 }
