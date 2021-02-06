@@ -10,6 +10,7 @@ import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.plugin.PluginBase;
+import sun.security.action.GetLongAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,15 +39,16 @@ public class DeathView extends PluginBase implements Listener {
         if (entity instanceof Player && entity.getHealth() - event.getDamage() <= 0) {
             Player player = (Player) entity;
 
-            if (player.getGamemode() == 1 || !player.hasPermission("deathview.spectator")) {
+            if (player.getGamemode() != Player.SURVIVAL && player.getGamemode() != Player.ADVENTURE ||
+                    !player.hasPermission("deathview.spectator")) {
                 return;
             }
 
             event.setCancelled();
             player.setGamemode(3);
 
-            sendMessageFromConfig(getConfig().getString("death-message.died.player"), event, player);
-            sendMessageFromConfig(getConfig().getString("death-message.died.all"), event);
+            sendMessageFromConfig("death-message.died.player", event, player);
+            sendMessageFromConfig("death-message.died.all", event);
 
             getServer().getScheduler().scheduleDelayedTask(this, () -> {
                 player.setGamemode(0);
@@ -100,11 +102,8 @@ public class DeathView extends PluginBase implements Listener {
         if (!chatMessage.isEmpty()) {
             players.forEach(p -> p.sendMessage(placeholder(event, chatMessage)));
         }
-        if (!titleMessage.isEmpty()) {
-            players.forEach(p -> p.sendMessage(placeholder(event, titleMessage)));
-        }
-        if (!subtitleMessage.isEmpty()) {
-            players.forEach(p -> p.sendMessage(placeholder(event, subtitleMessage)));
+        if (!titleMessage.isEmpty() || !subtitleMessage.isEmpty()) {
+            players.forEach(p -> p.sendTitle(placeholder(event, titleMessage), placeholder(event, subtitleMessage)));
         }
     }
 }
