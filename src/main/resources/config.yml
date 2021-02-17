@@ -43,3 +43,7 @@ teleport-to:
 # Specify the name of the world you would like to teleport to.
 # You can use 'default' for the default world specified in the server.properties.
 teleport-to-world: default
+
+# NOTE: This WONT drop items! If you want the items to drop on death, set the
+# "keepinventory" gamerule to false
+clear-inventory-on-death: false

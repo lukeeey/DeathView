@@ -64,8 +64,15 @@ public class DeathView extends PluginBase implements Listener {
                     player.teleport(new Location(getConfig().getInt("teleport-to-coords.x"),
                             getConfig().getInt("teleport-to-coords.y"), getConfig().getInt("teleport-to-coords.z"), 0, 0, world));
                 }
-                if (!world.getGameRules().getBoolean(GameRule.KEEP_INVENTORY)) {
+
+                boolean keepInventory = world.getGameRules().getBoolean(GameRule.KEEP_INVENTORY);
+                boolean clearInventory = getConfig().getBoolean("clear-inventory-on-death");
+
+                if (!keepInventory && !clearInventory) {
                     player.getInventory().getContents().values().forEach(player::dropItem);
+                }
+                if (clearInventory) {
+                    player.getInventory().clearAll();
                 }
             }, getConfig().getInt("time") * 20);
         }
