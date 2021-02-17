@@ -6,6 +6,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.level.GameRule;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
@@ -62,6 +63,9 @@ public class DeathView extends PluginBase implements Listener {
                 if (getConfig().getBoolean("teleport-to-coords")) {
                     player.teleport(new Location(getConfig().getInt("teleport-to-coords.x"),
                             getConfig().getInt("teleport-to-coords.y"), getConfig().getInt("teleport-to-coords.z"), 0, 0, world));
+                }
+                if (!world.getGameRules().getBoolean(GameRule.KEEP_INVENTORY)) {
+                    player.getInventory().getContents().values().forEach(player::dropItem);
                 }
             }, getConfig().getInt("time") * 20);
         }
