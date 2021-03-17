@@ -1,6 +1,6 @@
 # DeathView
 ![DeathView](https://github.com/lukeeey/DeathView/workflows/DeathView/badge.svg)
-[![Discord](https://img.shields.io/discord/803794932820082739.svg?color=%237289da&label=Discord)](https://discord.gg/pXz2rGJ8FA)  
+[![Discord](https://img.shields.io/discord/803794932820082739.svg?color=%237289da&label=Discord)](https://discord.gg/wXFFSkmANS)  
 
 A Nukkit plugin that puts you into spectator made when you die, bypassing the death screen.
 
