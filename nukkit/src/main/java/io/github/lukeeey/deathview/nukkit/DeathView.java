@@ -1,4 +1,4 @@
-package io.github.lukeeey.deathview;
+package io.github.lukeeey.deathview.nukkit;
 
 import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
@@ -9,9 +9,7 @@ import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
-import cn.nukkit.math.Vector3;
 import cn.nukkit.plugin.PluginBase;
-import sun.security.action.GetLongAction;
 
 import java.util.ArrayList;
 import java.util.Collections;

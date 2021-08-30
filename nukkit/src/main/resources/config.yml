@@ -1,0 +1,49 @@
+# ===========================================
+# DeathView by lukeeey
+# https://github.com/lukeeey/DeathView
+# ===========================================
+
+# The messages to be displayed when you 'die'
+# Leave empty to prevent displaying them
+#
+# Types:
+#   chat: display a message in chat
+#   title: display a message in a title
+#   subtitle: display a message in a subtitle
+#
+# For any of these types, leaving them empty will make sure that message type
+# is not shown. They can all be empty, as well as all be filled (if you want both a title
+# and chat message to be shown)
+#
+# Placeholders: {victim} {world}
+death-message:
+  died:
+    player:
+      chat: "Oh noes! You will respawn soon."
+      title: ""
+      subtitle: ""
+    all:
+      chat: "{victim} died :("
+      title: ""
+      subtitle: ""
+
+# The amount of time you will be in spectator mode for (in seconds)
+time: 5
+
+# Teleport to the world spawnpoint when you 'respawn'
+teleport-to-spawn: true
+
+# Set teleport-to-spawn to false to use and change teleport-to values
+teleport-to-coords: false
+teleport-to:
+  x: 8
+  y: 100
+  z: 8
+
+# Specify the name of the world you would like to teleport to.
+# You can use 'default' for the default world specified in the server.properties.
+teleport-to-world: default
+
+# NOTE: This WONT drop items! If you want the items to drop on death, set the
+# "keepinventory" gamerule to false
+clear-inventory-on-death: false
